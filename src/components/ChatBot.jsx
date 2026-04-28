@@ -12,8 +12,8 @@ export default function ChatBot() {
           {/* Header */}
           <div className="dark:bg-gradient-to-r from-[#0f0f1a] to-[#1a1a2e] bg-slate-100 px-4 py-3 flex items-center justify-between border-b dark:border-white/10 border-slate-200">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-full border border-neon-blue/50 flex items-center justify-center overflow-hidden bg-brand-darker">
-                <img src="/chatbot-icon.png" alt="Avatar" className="w-full h-full object-cover" />
+              <div className="w-9 h-9 rounded-full border border-white/10 flex items-center justify-center overflow-hidden bg-brand-darker">
+                <img src="/chatbot-icon.png" alt="Support AI" className="w-full h-full object-cover" />
               </div>
               <div>
                 <p className="dark:text-white text-slate-900 font-bold text-sm">Battle Arena Support</p>
@@ -46,28 +46,28 @@ export default function ChatBot() {
       {/* Floating Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className={`w-16 h-16 rounded-full flex items-center justify-center shadow-2xl transition-all duration-300 hover:scale-110 active:scale-95 overflow-hidden group ${
+        className={`w-14 h-14 rounded-full flex items-center justify-center shadow-xl transition-all duration-300 hover:scale-105 active:scale-95 overflow-hidden group ${
           isOpen
-            ? 'bg-neon-red/20 border-2 border-neon-red'
-            : 'bg-brand-darker border-2 border-neon-blue'
+            ? 'bg-red-500/10 border border-red-500/50'
+            : 'bg-brand-darker border border-white/20'
         }`}
         style={{
           boxShadow: isOpen
-            ? '0 0 30px rgba(255,50,50,0.5)'
-            : '0 0 30px rgba(0,210,255,0.5)',
+            ? '0 0 20px rgba(239,68,68,0.2)'
+            : '0 0 20px rgba(255,255,255,0.05)',
         }}
       >
         {isOpen ? (
-          <X className="w-8 h-8 text-neon-red z-10" />
+          <X className="w-6 h-6 text-red-500 z-10" />
         ) : (
           <>
             <img 
               src="/chatbot-icon.png" 
-              alt="Chat" 
+              alt="Support" 
               className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
             />
-            {/* Pulse ring */}
-            <span className="absolute w-full h-full rounded-full border-2 border-neon-blue/50 animate-ping" />
+            {/* Subtle pulse */}
+            <span className="absolute w-full h-full rounded-full border border-white/10 animate-ping opacity-20" />
           </>
         )}
       </button>
