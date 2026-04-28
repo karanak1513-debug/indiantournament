@@ -8,7 +8,7 @@ export default function ChatBot() {
     <div className="fixed bottom-6 right-6 z-[999] flex flex-col items-end gap-3">
       {/* Chat Window */}
       {isOpen && (
-        <div className="w-[370px] h-[600px] rounded-2xl overflow-hidden shadow-2xl shadow-neon-blue/30 border border-neon-blue/40 flex flex-col animate-in fade-in slide-in-from-bottom-4 duration-300">
+        <div className="w-[370px] h-[750px] rounded-2xl overflow-hidden shadow-2xl shadow-neon-blue/30 border border-neon-blue/40 flex flex-col animate-in fade-in slide-in-from-bottom-4 duration-300">
           {/* Header */}
           <div className="dark:bg-gradient-to-r from-[#0f0f1a] to-[#1a1a2e] bg-slate-100 px-4 py-3 flex items-center justify-between border-b dark:border-white/10 border-slate-200">
             <div className="flex items-center gap-3">
@@ -33,10 +33,11 @@ export default function ChatBot() {
 
           {/* Chatbase iframe */}
           <iframe
-            src="https://www.chatbase.co/chatbot-iframe/15IUj93KeSt5Eu8ZLWEpD"
+            src="https://www.chatbase.co/chatbot-iframe/iEDX0DZUQlGYY3jHTG63q"
             width="100%"
-            style={{ height: '100%', minHeight: '500px', border: 'none', background: 'transparent' }}
+            style={{ height: '100%', minHeight: '700px', border: 'none', background: 'transparent' }}
             frameBorder="0"
+            allow="microphone"
             title="Battle Arena Support Chat"
           />
         </div>
