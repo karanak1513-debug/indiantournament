@@ -40,7 +40,12 @@ export default function LoginSignup() {
       await loginWithGoogle();
       navigate('/profile');
     } catch (err) {
-      setError('Failed to log in with Google. ' + err.message);
+      console.error("Google Login Error:", err);
+      if (err.code === 'auth/unauthorized-domain') {
+        setError("Google Login blocked. Add this exact domain in Firebase Authentication authorized domains: indiantournament-hit5.vercel.app");
+      } else {
+        setError('Failed to log in with Google. ' + err.message);
+      }
     }
     setLoading(false);
   }
