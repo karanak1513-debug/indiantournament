@@ -44,12 +44,12 @@ export default function TournamentCard({ tournament }) {
         </div>
         
         <div className="absolute bottom-3 left-4 z-20 w-full pr-4">
-          <h3 className="text-2xl font-black italic uppercase text-white group-hover:text-neon-blue transition-colors text-glow truncate">
+          <h3 className="text-2xl font-black italic uppercase dark:text-white text-slate-900 group-hover:text-neon-blue transition-colors dark:text-glow truncate">
             {tournament.title}
           </h3>
-          <p className="text-xs font-bold text-brand-light flex items-center gap-2 mt-1 uppercase tracking-wider">
-            <span className="bg-white/10 px-2 py-0.5 rounded border border-white/10">{tournament.game}</span>
-            <span className="bg-white/10 px-2 py-0.5 rounded border border-white/10">{tournament.mode}</span>
+          <p className="text-xs font-bold dark:text-brand-light text-slate-500 flex items-center gap-2 mt-1 uppercase tracking-wider">
+            <span className="dark:bg-white/10 bg-slate-200 px-2 py-0.5 rounded border dark:border-white/10 border-slate-300">{tournament.game}</span>
+            <span className="dark:bg-white/10 bg-slate-200 px-2 py-0.5 rounded border dark:border-white/10 border-slate-300">{tournament.mode}</span>
           </p>
         </div>
       </div>
@@ -57,32 +57,32 @@ export default function TournamentCard({ tournament }) {
       <div className="p-5 flex-grow flex flex-col gap-4 relative">
         {/* Description */}
         {tournament.description && (
-          <p className="text-brand-light text-xs leading-relaxed border-l-2 border-neon-blue/40 pl-3 italic">
+          <p className="dark:text-brand-light text-slate-600 text-xs leading-relaxed border-l-2 border-neon-blue/40 pl-3 italic">
             {tournament.description}
           </p>
         )}
         {/* Info Grid */}
-        <div className="grid grid-cols-2 gap-y-3 gap-x-2 text-sm bg-black/20 p-3 rounded-lg border border-white/5">
-          <div className="flex items-center gap-2 text-brand-light">
+        <div className="grid grid-cols-2 gap-y-3 gap-x-2 text-sm dark:bg-black/20 bg-slate-100 p-3 rounded-lg border dark:border-white/5 border-slate-200">
+          <div className="flex items-center gap-2 dark:text-brand-light text-slate-600">
             <Trophy className="w-4 h-4 text-yellow-400 drop-shadow-[0_0_5px_rgba(234,179,8,0.5)]" />
-            <span className="text-xs">Prize: <br/><strong className="text-white text-sm">₹{tournament.prizePool}</strong></span>
+            <span className="text-xs">Prize: <br/><strong className="dark:text-white text-slate-900 text-sm">₹{tournament.prizePool}</strong></span>
           </div>
-          <div className="flex items-center gap-2 text-brand-light">
+          <div className="flex items-center gap-2 dark:text-brand-light text-slate-600">
             <Coins className="w-4 h-4 text-neon-blue drop-shadow-[0_0_5px_rgba(0,210,255,0.5)]" />
-            <span className="text-xs">Entry: <br/><strong className="text-white text-sm">₹{tournament.entryFee}</strong></span>
+            <span className="text-xs">Entry: <br/><strong className="dark:text-white text-slate-900 text-sm">₹{tournament.entryFee}</strong></span>
           </div>
-          <div className="flex items-center gap-2 text-brand-light">
+          <div className="flex items-center gap-2 dark:text-brand-light text-slate-600">
             <Map className="w-4 h-4 text-green-400" />
-            <span className="text-xs">Map: <br/><strong className="text-white text-sm truncate">{tournament.map}</strong></span>
+            <span className="text-xs">Map: <br/><strong className="dark:text-white text-slate-900 text-sm truncate">{tournament.map}</strong></span>
           </div>
-          <div className="flex items-center gap-2 text-brand-light">
+          <div className="flex items-center gap-2 dark:text-brand-light text-slate-600">
             <Target className="w-4 h-4 text-red-400" />
-            <span className="text-xs">Mode: <br/><strong className="text-white text-sm">{tournament.mode}</strong></span>
+            <span className="text-xs">Mode: <br/><strong className="dark:text-white text-slate-900 text-sm">{tournament.mode}</strong></span>
           </div>
         </div>
 
         {/* Date & Time */}
-        <div className="flex items-center justify-center gap-2 text-white font-bold bg-white/5 p-2 rounded-lg text-sm border border-white/10">
+        <div className="flex items-center justify-center gap-2 dark:text-white text-slate-900 font-bold dark:bg-white/5 bg-slate-100 p-2 rounded-lg text-sm border dark:border-white/10 border-slate-200">
           <Calendar className="w-4 h-4 text-neon-purple" />
           {format(new Date(tournament.matchStartTime), 'MMM dd, yyyy - hh:mm a')}
         </div>
@@ -90,15 +90,15 @@ export default function TournamentCard({ tournament }) {
         {/* Progress Bar */}
         <div className="space-y-1">
           <div className="flex justify-between text-xs font-bold uppercase tracking-wider">
-            <span className="text-brand-light">Slots Joined</span>
+            <span className="dark:text-brand-light text-slate-500">Slots Joined</span>
             <span className={isFull ? 'text-red-400' : 'text-neon-blue'}>
               {tournament.joinedSlots} / {tournament.maxSlots}
             </span>
           </div>
-          <div className="h-2.5 w-full bg-black/50 rounded-full overflow-hidden border border-white/10">
+          <div className="h-2.5 w-full dark:bg-black/50 bg-slate-200 rounded-full overflow-hidden border dark:border-white/10 border-slate-300">
             <div 
               className={clsx(
-                "h-full rounded-full transition-all duration-500 shadow-[0_0_10px_currentColor]",
+                "h-full rounded-full transition-all duration-500 dark:shadow-[0_0_10px_currentColor]",
                 isFull ? "bg-red-500 text-red-500" : "bg-neon-blue text-neon-blue"
               )}
               style={{ width: `${Math.min((tournament.joinedSlots / tournament.maxSlots) * 100, 100)}%` }}
@@ -108,7 +108,7 @@ export default function TournamentCard({ tournament }) {
 
         {/* Actions */}
         <div className="flex gap-3 pt-2 mt-auto">
-          <Link to={`/tournaments/${tournament.id}`} className="flex-1 bg-white/5 hover:bg-white/10 border border-white/20 text-center py-2.5 rounded-lg font-bold text-sm transition-all hover:scale-[1.02]">
+          <Link to={`/tournaments/${tournament.id}`} className="flex-1 dark:bg-white/5 bg-slate-100 hover:bg-slate-200 dark:hover:bg-white/10 border dark:border-white/20 border-slate-300 dark:text-white text-slate-900 text-center py-2.5 rounded-lg font-bold text-sm transition-all hover:scale-[1.02]">
             Details
           </Link>
           {!isClosed && !isFull && (

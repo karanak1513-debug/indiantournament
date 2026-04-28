@@ -104,7 +104,7 @@ export function AuthProvider({ children }) {
     signup,
     loginWithGoogle,
     logout,
-    isAdmin: userData?.role === 'admin' || currentUser?.email === 'karanak1513@gmail.com'
+    isAdmin: currentUser?.email === 'karanak1513@gmail.com'
   };
 
   return (

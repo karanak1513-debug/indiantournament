@@ -150,8 +150,8 @@ export default function TournamentDetails() {
             <span className="px-3 py-1 bg-neon-red/20 text-neon-red border border-neon-red/50 rounded-full text-xs font-bold uppercase mb-4 inline-block">
               {tournament.status.replace('_', ' ')}
             </span>
-            <h1 className="text-4xl md:text-5xl font-black uppercase italic text-glow">{tournament.title}</h1>
-            <p className="text-brand-light mt-2 max-w-2xl">{tournament.description}</p>
+            <h1 className="text-4xl md:text-5xl font-black uppercase italic text-glow dark:text-white text-slate-900">{tournament.title}</h1>
+            <p className="dark:text-brand-light text-slate-600 mt-2 max-w-2xl">{tournament.description}</p>
           </div>
           <div className="flex-shrink-0 w-full md:w-auto">
             {hasJoined ? (
@@ -191,15 +191,15 @@ export default function TournamentDetails() {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
         <div className="md:col-span-2 space-y-8">
           <div className="glass-card p-6">
-            <h2 className="text-xl font-bold mb-4 flex items-center gap-2"><ShieldCheck className="w-5 h-5 text-neon-blue" /> Rules & Guidelines</h2>
-            <div className="prose prose-invert max-w-none text-brand-light">
+            <h2 className="text-xl font-bold mb-4 flex items-center gap-2 dark:text-white text-slate-900"><ShieldCheck className="w-5 h-5 text-neon-blue" /> Rules & Guidelines</h2>
+            <div className="prose prose-invert max-w-none dark:text-brand-light text-slate-600">
                {tournament.rules ? <div dangerouslySetInnerHTML={{ __html: tournament.rules.replace(/\\n/g, '<br/>') }} /> : 'No rules specified.'}
             </div>
           </div>
 
           <div className="glass-card p-6">
-            <h2 className="text-xl font-bold mb-4 flex items-center gap-2"><Trophy className="w-5 h-5 text-yellow-400" /> Rewards</h2>
-            <div className="prose prose-invert max-w-none text-brand-light">
+            <h2 className="text-xl font-bold mb-4 flex items-center gap-2 dark:text-white text-slate-900"><Trophy className="w-5 h-5 text-yellow-400" /> Rewards</h2>
+            <div className="prose prose-invert max-w-none dark:text-brand-light text-slate-600">
                {tournament.rewards ? <div dangerouslySetInnerHTML={{ __html: tournament.rewards.replace(/\\n/g, '<br/>') }} /> : 'No rewards specified.'}
             </div>
           </div>
@@ -207,21 +207,21 @@ export default function TournamentDetails() {
 
         <div className="space-y-6">
           <div className="glass-card p-6 space-y-4">
-            <h3 className="font-bold text-lg border-b border-white/10 pb-2">Match Details</h3>
+            <h3 className="font-bold text-lg border-b dark:border-white/10 border-slate-200 pb-2 dark:text-white text-slate-900">Match Details</h3>
             
             <div className="flex justify-between items-center">
-              <div className="text-brand-light flex items-center gap-2"><Calendar className="w-4 h-4"/> Time</div>
-              <div className="font-bold">{format(new Date(tournament.matchStartTime), 'MMM dd, hh:mm a')}</div>
+              <div className="dark:text-brand-light text-slate-500 flex items-center gap-2"><Calendar className="w-4 h-4"/> Time</div>
+              <div className="font-bold dark:text-white text-slate-900">{format(new Date(tournament.matchStartTime), 'MMM dd, hh:mm a')}</div>
             </div>
             
             <div className="flex justify-between items-center">
-              <div className="text-brand-light flex items-center gap-2"><Gamepad2 className="w-4 h-4"/> Game</div>
-              <div className="font-bold">{tournament.game} ({tournament.mode})</div>
+              <div className="dark:text-brand-light text-slate-500 flex items-center gap-2"><Gamepad2 className="w-4 h-4"/> Game</div>
+              <div className="font-bold dark:text-white text-slate-900">{tournament.game} ({tournament.mode})</div>
             </div>
             
             <div className="flex justify-between items-center">
-              <div className="text-brand-light flex items-center gap-2"><Map className="w-4 h-4"/> Map</div>
-              <div className="font-bold">{tournament.map}</div>
+              <div className="dark:text-brand-light text-slate-500 flex items-center gap-2"><Map className="w-4 h-4"/> Map</div>
+              <div className="font-bold dark:text-white text-slate-900">{tournament.map}</div>
             </div>
             
             <div className="flex justify-between items-center">
@@ -230,16 +230,16 @@ export default function TournamentDetails() {
             </div>
 
             <div className="flex justify-between items-center">
-              <div className="text-brand-light flex items-center gap-2"><Coins className="w-4 h-4"/> Entry Fee</div>
-              <div className="font-bold">₹{tournament.entryFee}</div>
+              <div className="dark:text-brand-light text-slate-500 flex items-center gap-2"><Coins className="w-4 h-4"/> Entry Fee</div>
+              <div className="font-bold dark:text-white text-slate-900">₹{tournament.entryFee}</div>
             </div>
 
-            <div className="pt-4 border-t border-white/10">
-              <div className="flex justify-between text-xs mb-1">
-                <span className="text-brand-light">Slots Full</span>
-                <span>{tournament.joinedSlots} / {tournament.maxSlots}</span>
+            <div className="pt-4 border-t dark:border-white/10 border-slate-200">
+              <div className="flex justify-between text-xs mb-1 font-bold">
+                <span className="dark:text-brand-light text-slate-500">Slots Full</span>
+                <span className="dark:text-white text-slate-900">{tournament.joinedSlots} / {tournament.maxSlots}</span>
               </div>
-              <div className="w-full bg-white/10 rounded-full h-2">
+              <div className="w-full dark:bg-white/10 bg-slate-200 rounded-full h-2">
                 <div className="bg-neon-blue h-2 rounded-full" style={{width: `${Math.min((tournament.joinedSlots/tournament.maxSlots)*100, 100)}%`}}></div>
               </div>
             </div>

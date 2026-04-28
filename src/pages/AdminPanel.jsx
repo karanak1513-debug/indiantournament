@@ -171,7 +171,7 @@ export default function AdminPanel() {
       <div className="w-full md:w-64 flex-shrink-0 glass-card p-4 space-y-2 h-max md:sticky md:top-24">
         <h2 className="text-xl font-bold mb-4 flex items-center gap-2 px-2 text-neon-red"><ShieldCheck/> Admin Panel</h2>
         {['dashboard', 'tournaments', 'joins', 'payments', 'users', 'leaderboard', 'settings', 'announcements'].map(tab => (
-          <button key={tab} onClick={() => setActiveTab(tab)} className={`w-full text-left px-4 py-3 rounded-lg font-bold capitalize transition-all ${activeTab === tab ? 'bg-neon-red/20 text-neon-red border border-neon-red/50' : 'hover:bg-white/5 text-brand-light'}`}>
+          <button key={tab} onClick={() => setActiveTab(tab)} className={`w-full text-left px-4 py-3 rounded-lg font-bold capitalize transition-all ${activeTab === tab ? 'bg-neon-red/20 text-neon-red border border-neon-red/50 shadow-lg shadow-neon-red/10' : 'hover:dark:bg-white/5 hover:bg-slate-100 dark:text-brand-light text-slate-600'}`}>
             {tab}
             {tab === 'payments' && pendingPayments.length > 0 && <span className="float-right bg-neon-red text-white text-xs px-2 py-0.5 rounded-full">{pendingPayments.length}</span>}
             {tab === 'joins' && allJoins.length > 0 && <span className="float-right bg-neon-red text-white text-xs px-2 py-0.5 rounded-full">{allJoins.length}</span>}
@@ -185,16 +185,16 @@ export default function AdminPanel() {
         {activeTab === 'dashboard' && (
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
              <div className="glass-card p-6 border-l-4 border-l-neon-blue">
-               <p className="text-brand-light uppercase text-sm font-bold">Total Users</p>
-               <p className="text-4xl font-black">{users.length}</p>
+               <p className="dark:text-brand-light text-slate-500 uppercase text-sm font-bold">Total Users</p>
+               <p className="text-4xl font-black dark:text-white text-slate-900">{users.length}</p>
              </div>
              <div className="glass-card p-6 border-l-4 border-l-yellow-400">
-               <p className="text-brand-light uppercase text-sm font-bold">Total Joins</p>
-               <p className="text-4xl font-black">{allJoins.length}</p>
+               <p className="dark:text-brand-light text-slate-500 uppercase text-sm font-bold">Total Joins</p>
+               <p className="text-4xl font-black dark:text-white text-slate-900">{allJoins.length}</p>
              </div>
              <div className="glass-card p-6 border-l-4 border-l-green-400">
-               <p className="text-brand-light uppercase text-sm font-bold">Pending Payments</p>
-               <p className="text-4xl font-black">{pendingPayments.length}</p>
+               <p className="dark:text-brand-light text-slate-500 uppercase text-sm font-bold">Pending Payments</p>
+               <p className="text-4xl font-black dark:text-white text-slate-900">{pendingPayments.length}</p>
              </div>
           </div>
         )}
@@ -202,11 +202,11 @@ export default function AdminPanel() {
         {activeTab === 'tournaments' && (
           <>
             <div className="glass-card p-6">
-              <h3 className="text-xl font-bold mb-4">Create Tournament</h3>
+              <h3 className="text-xl font-bold mb-4 dark:text-white text-slate-900">Create Tournament</h3>
               <form onSubmit={handleCreateTournament} className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-                <input required placeholder="Title" value={tForm.title} onChange={e=>setTForm({...tForm, title: e.target.value})} className="bg-white/5 border border-white/10 rounded p-2 text-white" />
+                <input required placeholder="Title" value={tForm.title} onChange={e=>setTForm({...tForm, title: e.target.value})} className="dark:bg-white/5 bg-slate-100 border dark:border-white/10 border-slate-300 rounded p-2 dark:text-white text-slate-900 outline-none focus:border-neon-red" />
                 <div className="flex flex-col gap-1">
-                  <label className="text-xs text-brand-light">Banner Image</label>
+                  <label className="text-xs dark:text-brand-light text-slate-500">Banner Image</label>
                   <input type="file" accept="image/*" onChange={e => {
                     const file = e.target.files[0];
                     if (file) {
@@ -214,10 +214,10 @@ export default function AdminPanel() {
                       reader.onloadend = () => setTForm({...tForm, externalImageUrl: reader.result});
                       reader.readAsDataURL(file);
                     }
-                  }} className="bg-white/5 border border-white/10 rounded p-1 text-white text-xs" />
+                  }} className="dark:bg-white/5 bg-slate-100 border dark:border-white/10 border-slate-300 rounded p-1 dark:text-white text-slate-900 text-xs" />
                 </div>
-                <textarea required placeholder="Tournament Description — e.g. Elite Free Fire Squad Showdown! Top squads battle for ₹5000 prize pool. Only skilled players. Fair play strictly enforced." value={tForm.description} onChange={e=>setTForm({...tForm, description: e.target.value})} className="bg-white/5 border border-white/10 rounded p-2 text-white md:col-span-2 h-20 text-sm" />
-                <select value={tForm.game} onChange={e=>setTForm({...tForm, game: e.target.value})} className="bg-brand-gray border border-white/10 rounded p-2 text-white md:col-span-2">
+                <textarea required placeholder="Tournament Description" value={tForm.description} onChange={e=>setTForm({...tForm, description: e.target.value})} className="dark:bg-white/5 bg-slate-100 border dark:border-white/10 border-slate-300 rounded p-2 dark:text-white text-slate-900 md:col-span-2 h-20 text-sm outline-none focus:border-neon-red" />
+                <select value={tForm.game} onChange={e=>setTForm({...tForm, game: e.target.value})} className="dark:bg-brand-gray bg-slate-100 border dark:border-white/10 border-slate-300 rounded p-2 dark:text-white text-slate-900 md:col-span-2">
                   <option value="Free Fire">Free Fire</option><option value="BGMI">BGMI</option>
                 </select>
                 <select value={tForm.mode} onChange={e=>setTForm({...tForm, mode: e.target.value})} className="bg-brand-gray border border-white/10 rounded p-2 text-white">
@@ -275,36 +275,33 @@ export default function AdminPanel() {
 
         {activeTab === 'joins' && (
           <div className="glass-card p-6">
-            <h3 className="text-xl font-bold mb-4">Participants & Joins</h3>
+            <h3 className="text-xl font-bold mb-4 dark:text-white text-slate-900">Participants & Joins</h3>
             <div className="overflow-x-auto">
               <table className="w-full text-sm text-left">
-                <thead><tr className="border-b border-white/10 text-brand-light"><th className="pb-2">User & IGN</th><th className="pb-2">Tournament</th><th className="pb-2">UID & UPI</th><th className="pb-2 text-right">Actions</th></tr></thead>
+                <thead><tr className="border-b dark:border-white/10 border-slate-200 dark:text-brand-light text-slate-500"><th className="pb-2">User & IGN</th><th className="pb-2">Tournament</th><th className="pb-2">UID & UPI</th><th className="pb-2 text-right">Actions</th></tr></thead>
                 <tbody>
                   {allJoins.map(j => (
-                    <tr key={j.id} className="border-b border-white/5">
+                    <tr key={j.id} className="border-b dark:border-white/5 border-slate-100 dark:text-white text-slate-900">
                       <td className="py-3">{j.userName}<br/><span className="text-xs text-neon-blue">{j.playerName}</span></td>
                       <td className="py-3 font-bold">{j.tournamentTitle}</td>
-                      <td className="py-3">UID: {j.gameUid}<br/><span className="text-xs text-yellow-400">UPI: {j.playerUpi || 'N/A'}</span></td>
+                      <td className="py-3 text-xs">UID: {j.gameUid}<br/><span className="text-yellow-600 dark:text-yellow-400 font-bold">UPI: {j.playerUpi || 'N/A'}</span></td>
                       <td className="py-3 text-right space-x-2">
                         {j.status === 'approved' && (
-                          <>
-                            <span className="inline-flex items-center gap-1 bg-green-500/20 text-green-400 text-xs font-bold px-3 py-1 rounded-full border border-green-500/30">
-                              <Check className="w-3 h-3"/> Approved
-                            </span>
-                            <button onClick={()=>handleJoin(j, 'reject')} className="bg-red-500/20 text-red-400 text-xs font-bold px-2 py-1 rounded hover:bg-red-500 hover:text-white ml-2">Reject & Refund</button>
-                          </>
+                          <span className="inline-flex items-center gap-1 dark:bg-green-500/20 bg-green-500/10 text-green-600 dark:text-green-400 text-xs font-bold px-3 py-1 rounded-full border dark:border-green-500/30 border-green-500/20">
+                            <Check className="w-3 h-3"/> Approved
+                          </span>
                         )}
                         {(!j.status || j.status === 'pending') && (
                           <>
-                            <button onClick={()=>handleJoin(j, 'approve')} className="bg-green-500/20 text-green-400 p-2 rounded hover:bg-green-500 hover:text-white"><Check className="w-4 h-4"/></button>
-                            <button onClick={()=>handleJoin(j, 'reject')} className="bg-red-500/20 text-red-400 p-2 rounded hover:bg-red-500 hover:text-white"><X className="w-4 h-4"/></button>
+                            <button onClick={()=>handleJoin(j, 'approve')} className="dark:bg-green-500/20 bg-green-500/10 text-green-600 dark:text-green-400 p-2 rounded hover:bg-green-500 hover:text-white"><Check className="w-4 h-4"/></button>
+                            <button onClick={()=>handleJoin(j, 'reject')} className="dark:bg-red-500/20 bg-red-500/10 text-red-600 dark:text-red-400 p-2 rounded hover:bg-red-500 hover:text-white"><X className="w-4 h-4"/></button>
                           </>
                         )}
-                        <button onClick={()=>{ if(window.confirm('Delete this join permanently?')) deleteDoc(doc(db,'joins',j.id)); }} className="bg-white/5 text-brand-light p-2 rounded hover:bg-red-500/20 hover:text-red-400 ml-1"><Trash2 className="w-4 h-4"/></button>
+                        <button onClick={()=>{ if(window.confirm('Delete this join permanently?')) deleteDoc(doc(db,'joins',j.id)); }} className="dark:bg-white/5 bg-slate-100 text-brand-light p-2 rounded hover:bg-red-500/20 hover:text-red-400 ml-1"><Trash2 className="w-4 h-4"/></button>
                       </td>
                     </tr>
                   ))}
-                  {allJoins.length === 0 && <tr><td colSpan="4" className="py-4 text-center text-brand-light">No joins found.</td></tr>}
+                  {allJoins.length === 0 && <tr><td colSpan="4" className="py-4 text-center dark:text-brand-light text-slate-500">No joins found.</td></tr>}
                 </tbody>
               </table>
             </div>
@@ -313,43 +310,43 @@ export default function AdminPanel() {
 
         {activeTab === 'payments' && (
           <div className="glass-card p-6">
-            <h3 className="text-xl font-bold mb-4">Pending Payments</h3>
+            <h3 className="text-xl font-bold mb-4 dark:text-white text-slate-900">Pending Payments</h3>
             <div className="overflow-x-auto">
               <table className="w-full text-sm text-left">
-                <thead><tr className="border-b border-white/10 text-brand-light"><th className="pb-2">User</th><th className="pb-2">Amount</th><th className="pb-2">Proof</th><th className="pb-2 text-right">Actions</th></tr></thead>
+                <thead><tr className="border-b dark:border-white/10 border-slate-200 dark:text-brand-light text-slate-500"><th className="pb-2">User</th><th className="pb-2">Amount</th><th className="pb-2">Proof</th><th className="pb-2 text-right">Actions</th></tr></thead>
                 <tbody>
                   {pendingPayments.map(p => (
-                    <tr key={p.id} className="border-b border-white/5">
-                      <td className="py-3">{p.userName} <br/><span className="text-xs text-brand-light">{p.userEmail}</span></td>
-                      <td className="py-3 font-bold text-green-400">₹{p.amount}</td>
+                    <tr key={p.id} className="border-b dark:border-white/5 border-slate-100 dark:text-white text-slate-900">
+                      <td className="py-3">{p.userName} <br/><span className="text-xs dark:text-brand-light text-slate-500">{p.userEmail}</span></td>
+                      <td className="py-3 font-bold text-green-600 dark:text-green-400">₹{p.amount}</td>
                       <td className="py-3">
                         {p.screenshotLink ? (
                           <div className="flex items-center gap-2">
                             <div 
-                              className="w-10 h-10 rounded border border-white/10 overflow-hidden cursor-pointer hover:border-neon-blue transition-colors bg-white/5"
+                              className="w-10 h-10 rounded border dark:border-white/10 border-slate-300 overflow-hidden cursor-pointer hover:border-neon-blue transition-colors dark:bg-white/5 bg-slate-100"
                               onClick={() => setSelectedProof(p.screenshotLink)}
                             >
                               <img src={p.screenshotLink} alt="Proof" className="w-full h-full object-cover" />
                             </div>
                             <button 
                               onClick={() => setSelectedProof(p.screenshotLink)}
-                              className="text-neon-blue hover:text-white transition-colors p-1"
+                              className="text-neon-blue hover:text-neon-purple transition-colors p-1"
                               title="View Proof"
                             >
                               <Eye className="w-4 h-4" />
                             </button>
                           </div>
                         ) : (
-                          <span className="text-brand-light text-xs italic">No Proof</span>
+                          <span className="dark:text-brand-light text-slate-400 text-xs italic">No Proof</span>
                         )}
                       </td>
                       <td className="py-3 text-right space-x-2">
-                        <button onClick={()=>handlePayment(p, 'approve')} className="bg-green-500/20 text-green-400 p-2 rounded hover:bg-green-500 hover:text-white"><Check className="w-4 h-4"/></button>
-                        <button onClick={()=>handlePayment(p, 'reject')} className="bg-red-500/20 text-red-400 p-2 rounded hover:bg-red-500 hover:text-white"><X className="w-4 h-4"/></button>
+                        <button onClick={()=>handlePayment(p, 'approve')} className="dark:bg-green-500/20 bg-green-500/10 text-green-600 dark:text-green-400 p-2 rounded hover:bg-green-500 hover:text-white"><Check className="w-4 h-4"/></button>
+                        <button onClick={()=>handlePayment(p, 'reject')} className="dark:bg-red-500/20 bg-red-500/10 text-red-600 dark:text-red-400 p-2 rounded hover:bg-red-500 hover:text-white"><X className="w-4 h-4"/></button>
                       </td>
                     </tr>
                   ))}
-                  {pendingPayments.length === 0 && <tr><td colSpan="4" className="py-4 text-center text-brand-light">No pending payments.</td></tr>}
+                  {pendingPayments.length === 0 && <tr><td colSpan="4" className="py-4 text-center dark:text-brand-light text-slate-500">No pending payments.</td></tr>}
                 </tbody>
               </table>
             </div>
@@ -364,12 +361,12 @@ export default function AdminPanel() {
                 <thead><tr className="border-b border-white/10 text-brand-light"><th className="pb-2">User</th><th className="pb-2">Balance</th><th className="pb-2">Manual Edit (+ / -)</th><th className="pb-2">Action</th></tr></thead>
                 <tbody>
                   {users.map(u => (
-                    <tr key={u.id} className="border-b border-white/5">
-                      <td className="py-3">{u.name} <br/><span className="text-xs text-brand-light">{u.email}</span></td>
-                      <td className="py-3 font-bold text-green-400">₹{u.walletBalance}</td>
+                    <tr key={u.id} className="border-b dark:border-white/5 border-slate-100 dark:text-white text-slate-900">
+                      <td className="py-3">{u.name} <br/><span className="text-xs dark:text-brand-light text-slate-500">{u.email}</span></td>
+                      <td className="py-3 font-bold text-green-600 dark:text-green-400">₹{u.walletBalance}</td>
                       <td className="py-3 flex gap-2">
-                        <input type="number" placeholder="Amt" onChange={e=>setWalletForm({...walletForm, amount: e.target.value})} className="w-20 bg-black/50 border border-white/10 rounded px-2 py-1" />
-                        <input type="text" placeholder="Reason" onChange={e=>setWalletForm({...walletForm, reason: e.target.value})} className="w-32 bg-black/50 border border-white/10 rounded px-2 py-1" />
+                        <input type="number" placeholder="Amt" onChange={e=>setWalletForm({...walletForm, amount: e.target.value})} className="w-20 dark:bg-black/50 bg-slate-100 border dark:border-white/10 border-slate-300 rounded px-2 py-1 outline-none focus:border-neon-blue" />
+                        <input type="text" placeholder="Reason" onChange={e=>setWalletForm({...walletForm, reason: e.target.value})} className="w-32 dark:bg-black/50 bg-slate-100 border dark:border-white/10 border-slate-300 rounded px-2 py-1 outline-none focus:border-neon-blue" />
                       </td>
                       <td className="py-3">
                         <button onClick={()=>handleManualWallet(u.id, u.walletBalance)} className="bg-neon-blue/20 text-neon-blue px-3 py-1 rounded hover:bg-neon-blue hover:text-brand-darker">Apply</button>

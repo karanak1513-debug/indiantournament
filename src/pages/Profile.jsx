@@ -44,18 +44,18 @@ export default function Profile() {
                 <User className="w-10 h-10 text-white/50" />
               )}
             </div>
-            <h2 className="text-2xl font-bold">{userData?.name}</h2>
-            <p className="text-brand-light flex items-center justify-center gap-2 mt-1">
+            <h2 className="text-2xl font-bold dark:text-white text-slate-900">{userData?.name}</h2>
+            <p className="dark:text-brand-light text-slate-600 flex items-center justify-center gap-2 mt-1">
               <Mail className="w-4 h-4" /> {userData?.email}
             </p>
             <div className="mt-6 flex gap-4">
-              <div className="flex-1 bg-white/5 p-3 rounded-lg">
-                <p className="text-xs text-brand-light uppercase mb-1">Balance</p>
+              <div className="flex-1 dark:bg-white/5 bg-slate-100 border dark:border-white/5 border-slate-200 p-3 rounded-lg">
+                <p className="text-xs dark:text-brand-light text-slate-500 uppercase mb-1">Balance</p>
                 <p className="text-xl font-bold text-neon-blue">₹{userData?.walletBalance || 0}</p>
               </div>
-              <div className="flex-1 bg-white/5 p-3 rounded-lg">
-                <p className="text-xs text-brand-light uppercase mb-1">Tournaments</p>
-                <p className="text-xl font-bold">{joins.length}</p>
+              <div className="flex-1 dark:bg-white/5 bg-slate-100 border dark:border-white/5 border-slate-200 p-3 rounded-lg">
+                <p className="text-xs dark:text-brand-light text-slate-500 uppercase mb-1">Tournaments</p>
+                <p className="text-xl font-bold dark:text-white text-slate-900">{joins.length}</p>
               </div>
             </div>
             <button onClick={logout} className="w-full mt-6 bg-red-500/20 text-red-500 hover:bg-red-500 hover:text-white py-2 rounded-lg transition-colors font-bold">
@@ -80,12 +80,12 @@ export default function Profile() {
                 const showRoomDetails = isApproved && timeDiff <= 10 * 60 * 1000 && timeDiff > -10000000;
 
                 return (
-                  <div key={join.id} className="bg-white/5 border border-white/10 rounded-xl p-4 flex flex-col md:flex-row justify-between gap-4">
+                  <div key={join.id} className="dark:bg-white/5 bg-slate-50 border dark:border-white/10 border-slate-200 rounded-xl p-4 flex flex-col md:flex-row justify-between gap-4">
                     <div>
-                      <h4 className="font-bold text-lg">{join.tournamentTitle}</h4>
-                      <p className="text-sm text-brand-light">Game UID: {join.gameUid} | Ign: {join.playerName}</p>
+                      <h4 className="font-bold text-lg dark:text-white text-slate-900">{join.tournamentTitle}</h4>
+                      <p className="text-sm dark:text-brand-light text-slate-600">Game UID: {join.gameUid} | Ign: {join.playerName}</p>
                       {matchTime && (
-                        <p className="text-xs text-brand-light mt-2 flex items-center gap-1">
+                        <p className="text-xs dark:text-brand-light text-slate-500 mt-2 flex items-center gap-1">
                           <Clock className="w-3 h-3" /> Match Time: {format(matchTime, 'MMM dd, hh:mm a')}
                         </p>
                       )}

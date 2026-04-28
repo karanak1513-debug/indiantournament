@@ -80,12 +80,12 @@ export default function Wallet() {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
         <div className="md:col-span-1 space-y-8">
           {/* Balance Card */}
-          <div className="glass-card p-8 text-center bg-gradient-to-b from-white/10 to-transparent relative overflow-hidden">
+          <div className="glass-card p-8 text-center bg-gradient-to-b dark:from-white/10 from-slate-100 to-transparent relative overflow-hidden">
              <div className="absolute top-0 right-0 p-4 opacity-10">
-               <WalletIcon className="w-24 h-24" />
+               <WalletIcon className="w-24 h-24 dark:text-white text-slate-900" />
              </div>
-             <h2 className="text-brand-light font-bold uppercase tracking-wider mb-2">Available Balance</h2>
-             <p className="text-6xl font-black text-white text-glow">₹{userData?.walletBalance || 0}</p>
+             <h2 className="dark:text-brand-light text-slate-600 font-bold uppercase tracking-wider mb-2">Available Balance</h2>
+             <p className="text-6xl font-black dark:text-white text-slate-900 text-glow">₹{userData?.walletBalance || 0}</p>
           </div>
 
           {/* Add Cash Card */}
@@ -95,19 +95,19 @@ export default function Wallet() {
             </h3>
             {settings ? (
               <div className="space-y-4">
-                <div className="bg-white/5 p-4 rounded-lg text-center space-y-2">
-                  <p className="text-sm text-brand-light">Scan QR or use UPI ID</p>
+                <div className="dark:bg-white/5 bg-slate-100 p-4 rounded-lg text-center space-y-2 border dark:border-white/5 border-slate-200">
+                  <p className="text-sm dark:text-brand-light text-slate-600">Scan QR or use UPI ID</p>
                   {settings.qrImageUrl && (
-                    <img src={settings.qrImageUrl} alt="QR Code" className="w-40 h-40 mx-auto rounded-lg" />
+                    <img src={settings.qrImageUrl} alt="QR Code" className="w-40 h-40 mx-auto rounded-lg border dark:border-white/10 border-slate-300 p-1 bg-white" />
                   )}
-                  <div className="flex items-center justify-between bg-brand-darker p-2 rounded">
-                    <span className="font-mono text-sm">{settings.upiId}</span>
-                    <button onClick={() => copyToClipboard(settings.upiId)} className="text-brand-light hover:text-white"><Copy className="w-4 h-4" /></button>
+                  <div className="flex items-center justify-between dark:bg-brand-darker bg-white border dark:border-white/10 border-slate-300 p-2 rounded">
+                    <span className="font-mono text-sm dark:text-white text-slate-900">{settings.upiId}</span>
+                    <button onClick={() => copyToClipboard(settings.upiId)} className="dark:text-brand-light text-slate-600 hover:text-neon-blue dark:hover:text-white"><Copy className="w-4 h-4" /></button>
                   </div>
                 </div>
                 
                 <form onSubmit={handleSubmitPayment} className="space-y-3">
-                  <input type="number" required min={settings.minAddCash || 10} placeholder="Amount (₹)" value={amount} onChange={e => setAmount(e.target.value)} className="w-full bg-white/5 border border-white/10 rounded py-2 px-3 focus:border-neon-purple outline-none" />
+                  <input type="number" required min={settings.minAddCash || 10} placeholder="Amount (₹)" value={amount} onChange={e => setAmount(e.target.value)} className="w-full dark:bg-white/5 bg-white border dark:border-white/10 border-slate-300 dark:text-white text-slate-900 rounded py-2 px-3 focus:border-neon-purple outline-none" />
                   <input type="file" accept="image/*" required onChange={e => {
                     const file = e.target.files[0];
                     if (file) {
@@ -115,7 +115,7 @@ export default function Wallet() {
                       reader.onloadend = () => setScreenshotLink(reader.result);
                       reader.readAsDataURL(file);
                     }
-                  }} className="w-full bg-white/5 border border-white/10 rounded py-2 px-3 focus:border-neon-purple outline-none" />
+                  }} className="w-full dark:bg-white/5 bg-white border dark:border-white/10 border-slate-300 dark:text-white text-slate-900 rounded py-2 px-3 focus:border-neon-purple outline-none" />
                   <button type="submit" disabled={loading} className="w-full neon-button neon-button-purple">Submit Request</button>
                 </form>
               </div>
@@ -132,7 +132,7 @@ export default function Wallet() {
             <div className="overflow-x-auto">
               <table className="w-full text-left text-sm">
                 <thead>
-                  <tr className="border-b border-white/10 text-brand-light">
+                  <tr className="border-b dark:border-white/10 border-slate-200 dark:text-brand-light text-slate-500">
                     <th className="pb-2">Date</th>
                     <th className="pb-2">Amount</th>
                     <th className="pb-2 text-center">Proof</th>
@@ -141,27 +141,27 @@ export default function Wallet() {
                 </thead>
                 <tbody>
                   {payments.length > 0 ? payments.map(p => (
-                    <tr key={p.id} className="border-b border-white/5">
+                    <tr key={p.id} className="border-b dark:border-white/5 border-slate-100 dark:text-white text-slate-900">
                       <td className="py-3">{format(new Date(p.createdAt), 'MMM dd, hh:mm a')}</td>
                       <td className="py-3 font-bold">₹{p.amount}</td>
                       <td className="py-3 text-center">
                         {p.screenshotLink && (
                           <button 
                             onClick={() => setSelectedProof(p.screenshotLink)}
-                            className="text-neon-purple hover:text-white transition-colors p-1"
+                            className="text-neon-purple hover:text-neon-blue transition-colors p-1"
                           >
                             <Eye className="w-5 h-5 mx-auto" />
                           </button>
                         )}
                       </td>
                       <td className="py-3">
-                        {p.status === 'pending' && <span className="text-yellow-400 flex items-center gap-1"><Clock className="w-4 h-4"/> Pending</span>}
-                        {p.status === 'approved' && <span className="text-green-400 flex items-center gap-1"><CheckCircle className="w-4 h-4"/> Approved</span>}
-                        {p.status === 'rejected' && <span className="text-red-400 flex items-center gap-1"><XCircle className="w-4 h-4"/> Rejected</span>}
+                        {p.status === 'pending' && <span className="text-yellow-600 dark:text-yellow-400 flex items-center gap-1"><Clock className="w-4 h-4"/> Pending</span>}
+                        {p.status === 'approved' && <span className="text-green-600 dark:text-green-400 flex items-center gap-1"><CheckCircle className="w-4 h-4"/> Approved</span>}
+                        {p.status === 'rejected' && <span className="text-red-600 dark:text-red-400 flex items-center gap-1"><XCircle className="w-4 h-4"/> Rejected</span>}
                       </td>
                     </tr>
                   )) : (
-                    <tr><td colSpan="3" className="py-4 text-center text-brand-light">No requests found.</td></tr>
+                    <tr><td colSpan="4" className="py-4 text-center dark:text-brand-light text-slate-500">No requests found.</td></tr>
                   )}
                 </tbody>
               </table>
@@ -174,7 +174,7 @@ export default function Wallet() {
             <div className="overflow-x-auto">
               <table className="w-full text-left text-sm">
                 <thead>
-                  <tr className="border-b border-white/10 text-brand-light">
+                  <tr className="border-b dark:border-white/10 border-slate-200 dark:text-brand-light text-slate-500">
                     <th className="pb-2">Date</th>
                     <th className="pb-2">Reason</th>
                     <th className="pb-2 text-right">Amount</th>
@@ -182,15 +182,15 @@ export default function Wallet() {
                 </thead>
                 <tbody>
                   {transactions.length > 0 ? transactions.map(t => (
-                    <tr key={t.id} className="border-b border-white/5">
+                    <tr key={t.id} className="border-b dark:border-white/5 border-slate-100 dark:text-white text-slate-900">
                       <td className="py-3">{format(new Date(t.createdAt), 'MMM dd, hh:mm a')}</td>
                       <td className="py-3">{t.reason}</td>
-                      <td className={`py-3 text-right font-bold ${t.type === 'credit' ? 'text-green-400' : 'text-red-400'}`}>
+                      <td className={`py-3 text-right font-bold ${t.type === 'credit' ? 'text-green-600 dark:text-green-400' : 'text-red-600 dark:text-red-400'}`}>
                         {t.type === 'credit' ? '+' : '-'}₹{t.amount}
                       </td>
                     </tr>
                   )) : (
-                    <tr><td colSpan="3" className="py-4 text-center text-brand-light">No transactions found.</td></tr>
+                    <tr><td colSpan="3" className="py-4 text-center dark:text-brand-light text-slate-500">No transactions found.</td></tr>
                   )}
                 </tbody>
               </table>

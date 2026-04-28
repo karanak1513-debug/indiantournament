@@ -70,8 +70,8 @@ export default function Home() {
     <div className="space-y-20 pb-20">
       {/* Announcement Modal */}
       {showAnnouncements && announcements.length > 0 && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
-          <div className="glass-card w-full max-w-lg p-0 relative overflow-hidden animate-in fade-in zoom-in duration-300">
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 dark:bg-black/80 bg-slate-900/40 backdrop-blur-sm">
+          <div className="glass-card w-full max-w-lg p-0 relative overflow-hidden animate-in fade-in zoom-in duration-300 dark:border-white/10 border-slate-300 shadow-2xl">
             <div className="bg-neon-red/20 border-b border-neon-red/30 p-4 flex items-center justify-between">
               <h2 className="text-xl font-bold flex items-center gap-2 text-neon-red">
                 <Megaphone className="w-5 h-5" /> Official Announcements
@@ -80,15 +80,15 @@ export default function Home() {
                 <X className="w-6 h-6" />
               </button>
             </div>
-            <div className="p-6 max-h-[60vh] overflow-y-auto space-y-4">
+            <div className="p-6 max-h-[60vh] overflow-y-auto space-y-4 dark:bg-transparent bg-white">
               {announcements.map((a, i) => (
-                <div key={a.id} className="bg-white/5 border border-white/10 rounded-lg p-4 relative">
+                <div key={a.id} className="dark:bg-white/5 bg-slate-50 border dark:border-white/10 border-slate-200 rounded-lg p-4 relative">
                   {i === 0 && <span className="absolute -top-3 -right-3 bg-neon-red text-white text-xs px-2 py-1 rounded-full font-bold shadow-lg shadow-neon-red/50 animate-pulse">NEW</span>}
-                  <p className="text-brand-light">{a.text}</p>
+                  <p className="dark:text-brand-light text-slate-700">{a.text}</p>
                 </div>
               ))}
             </div>
-            <div className="p-4 border-t border-white/10 text-center">
+            <div className="p-4 border-t dark:border-white/10 border-slate-200 dark:bg-transparent bg-white text-center">
                <button onClick={() => setShowAnnouncements(false)} className="neon-button neon-button-blue px-8 py-2 text-sm w-full">Acknowledge & Close</button>
             </div>
           </div>
@@ -109,13 +109,13 @@ export default function Home() {
               🌍 Global Active
             </div>
           </div>
-          <div className="inline-block px-4 py-1.5 bg-white/5 border border-white/10 rounded-full text-brand-light text-sm font-bold uppercase tracking-widest mb-4">
+          <div className="inline-block px-4 py-1.5 dark:bg-white/5 bg-slate-200/50 border dark:border-white/10 border-slate-200 rounded-full dark:text-brand-light text-slate-600 text-sm font-bold uppercase tracking-widest mb-4">
             The Ultimate Esports Arena
           </div>
-          <h1 className="text-6xl md:text-8xl font-black italic uppercase tracking-tighter text-glow drop-shadow-2xl">
-            Open <span className="text-neon-blue text-glow-blue">Battleground</span>
+          <h1 className="text-6xl md:text-8xl font-black italic uppercase tracking-tighter dark:text-glow dark:text-white text-slate-900 drop-shadow-2xl">
+            Open <span className="text-neon-blue dark:text-glow-blue">Battleground</span>
           </h1>
-          <p className="text-xl md:text-2xl text-brand-light font-medium max-w-3xl mx-auto leading-relaxed">
+          <p className="text-xl md:text-2xl dark:text-brand-light text-slate-600 font-medium max-w-3xl mx-auto leading-relaxed">
             Join Free Fire & BGMI tournaments, compete live, and win rewards.
           </p>
 
@@ -123,14 +123,14 @@ export default function Home() {
           {globalFeaturedMatch && (
             <div className="mt-8 mb-4 inline-block glass-card p-6 border-neon-blue/40 shadow-[0_0_30px_rgba(0,210,255,0.15)] animate-in zoom-in duration-500">
               <h2 className="text-sm font-bold text-neon-blue uppercase tracking-widest mb-2">⭐ Featured Match Starts In</h2>
-              <p className="text-xl font-black text-white mb-4 truncate max-w-md mx-auto">{globalFeaturedMatch.title}</p>
+              <p className="text-xl font-black dark:text-white text-slate-900 mb-4 truncate max-w-md mx-auto uppercase italic">{globalFeaturedMatch.title}</p>
               <div className="flex justify-center gap-4">
                 {['HOURS','MINUTES','SECONDS'].map((label, i) => (
                   <div key={label} className="text-center">
-                    <div className="bg-brand-darker border border-neon-blue/30 px-5 py-3 rounded-xl font-mono text-4xl text-neon-blue font-black shadow-[0_0_15px_rgba(0,210,255,0.4)] min-w-[80px]">
+                    <div className="dark:bg-brand-darker bg-white border dark:border-neon-blue/30 border-slate-300 px-5 py-3 rounded-xl font-mono text-4xl text-neon-blue font-black dark:shadow-[0_0_15px_rgba(0,210,255,0.4)] shadow-md min-w-[80px]">
                       {globalCountdown === 'LIVE NOW! 🔴' ? (i === 0 ? '🔴' : i === 1 ? 'LIVE' : '!!') : globalCountdown.split(':')[i]}
                     </div>
-                    <p className="text-[10px] text-brand-light uppercase tracking-widest mt-2 font-bold">{label}</p>
+                    <p className="text-[10px] dark:text-brand-light text-slate-500 uppercase tracking-widest mt-2 font-bold">{label}</p>
                   </div>
                 ))}
               </div>
@@ -141,7 +141,7 @@ export default function Home() {
             <Link to="/tournaments" className="w-full sm:w-auto neon-button neon-button-blue text-xl py-4 px-12 uppercase italic tracking-wider">
               Join Battle
             </Link>
-            <Link to="/tournaments" className="w-full sm:w-auto bg-white/5 hover:bg-white/10 border border-white/20 text-white font-bold py-4 px-12 rounded-lg transition-all uppercase tracking-wider">
+            <Link to="/tournaments" className="w-full sm:w-auto dark:bg-white/5 bg-slate-200/50 hover:bg-slate-300/50 dark:hover:bg-white/10 border dark:border-white/20 border-slate-300 dark:text-white text-slate-900 font-bold py-4 px-12 rounded-lg transition-all uppercase tracking-wider">
               View Tournaments
             </Link>
           </div>
@@ -152,33 +152,33 @@ export default function Home() {
       <section className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
         <div className="glass-card p-6 text-center shadow-neon-blue/5 border-b-2 border-b-neon-blue group">
           <Trophy className="w-8 h-8 mx-auto text-neon-blue mb-3 group-hover:scale-110 transition-transform" />
-          <p className="text-3xl font-black">2.5K+</p>
-          <p className="text-brand-light text-sm uppercase tracking-wider font-bold">Tournaments</p>
+          <p className="text-3xl font-black dark:text-white text-slate-900">2.5K+</p>
+          <p className="dark:text-brand-light text-slate-500 text-sm uppercase tracking-wider font-bold">Tournaments</p>
         </div>
         <div className="glass-card p-6 text-center shadow-neon-purple/5 border-b-2 border-b-neon-purple group">
           <Users className="w-8 h-8 mx-auto text-neon-purple mb-3 group-hover:scale-110 transition-transform" />
-          <p className="text-3xl font-black">75K+</p>
-          <p className="text-brand-light text-sm uppercase tracking-wider font-bold">Players</p>
+          <p className="text-3xl font-black dark:text-white text-slate-900">75K+</p>
+          <p className="dark:text-brand-light text-slate-500 text-sm uppercase tracking-wider font-bold">Players</p>
         </div>
         <div className="glass-card p-6 text-center shadow-yellow-500/5 border-b-2 border-b-yellow-500 group">
           <Coins className="w-8 h-8 mx-auto text-yellow-500 mb-3 group-hover:scale-110 transition-transform" />
-          <p className="text-3xl font-black">₹50L+</p>
-          <p className="text-brand-light text-sm uppercase tracking-wider font-bold">Prize Pool</p>
+          <p className="text-3xl font-black dark:text-white text-slate-900">₹50L+</p>
+          <p className="dark:text-brand-light text-slate-500 text-sm uppercase tracking-wider font-bold">Prize Pool</p>
         </div>
         <div className="glass-card p-6 text-center shadow-neon-red/5 border-b-2 border-b-neon-red group">
           <Target className="w-8 h-8 mx-auto text-neon-red mb-3 group-hover:scale-110 transition-transform" />
-          <p className="text-3xl font-black">18K+</p>
-          <p className="text-brand-light text-sm uppercase tracking-wider font-bold">Teams</p>
+          <p className="text-3xl font-black dark:text-white text-slate-900">18K+</p>
+          <p className="dark:text-brand-light text-slate-500 text-sm uppercase tracking-wider font-bold">Teams</p>
         </div>
       </section>
 
       {/* Dashboard Preview (if logged in) */}
       {userData && (
         <section>
-          <div className="glass-card p-8 flex items-center justify-between border border-neon-blue/20 bg-gradient-to-r from-neon-blue/10 to-transparent">
+          <div className="glass-card p-8 flex items-center justify-between border dark:border-neon-blue/20 border-neon-blue/40 bg-gradient-to-r dark:from-neon-blue/10 from-neon-blue/5 to-transparent">
             <div>
-              <h3 className="text-brand-light text-sm font-bold uppercase tracking-wider mb-2">Wallet Balance</h3>
-              <p className="text-5xl font-black text-white text-glow">₹{userData.walletBalance}</p>
+              <h3 className="dark:text-brand-light text-slate-600 text-sm font-bold uppercase tracking-wider mb-2">Wallet Balance</h3>
+              <p className="text-5xl font-black dark:text-white text-slate-900 text-glow">₹{userData.walletBalance}</p>
             </div>
             <Link to="/wallet" className="neon-button neon-button-purple text-sm px-6 py-3">Add Cash</Link>
           </div>
@@ -192,7 +192,7 @@ export default function Home() {
             <Gamepad2 className="text-neon-red w-10 h-10" /> 
             Featured <span className="text-neon-red text-glow-red">Battles</span>
           </h2>
-          <Link to="/tournaments" className="text-brand-light hover:text-white font-bold flex items-center transition-colors bg-white/5 px-6 py-2 rounded-full border border-white/10 hover:bg-white/10">
+          <Link to="/tournaments" className="dark:text-brand-light text-slate-600 hover:text-neon-blue dark:hover:text-white font-bold flex items-center transition-colors dark:bg-white/5 bg-slate-200 px-6 py-2 rounded-full border dark:border-white/10 border-slate-300 hover:bg-slate-300 dark:hover:bg-white/10">
             See All <ChevronRight className="w-5 h-5 ml-1" />
           </Link>
         </div>
@@ -215,9 +215,9 @@ export default function Home() {
       </section>
 
       {/* 7. How It Works */}
-      <section className="bg-brand-gray/20 rounded-3xl p-10 border border-white/5 shadow-2xl relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-neon-purple/5 to-transparent -z-10"></div>
-        <h2 className="text-4xl font-black uppercase italic text-center mb-12">Path to <span className="text-neon-purple text-glow">Glory</span></h2>
+      <section className="dark:bg-brand-gray/20 bg-white rounded-3xl p-10 border dark:border-white/5 border-slate-200 shadow-2xl relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l dark:from-neon-purple/5 from-purple-50 to-transparent -z-10"></div>
+        <h2 className="text-4xl font-black uppercase italic text-center mb-12 dark:text-white text-slate-900">Path to <span className="text-neon-purple dark:text-glow">Glory</span></h2>
         <div className="grid grid-cols-2 md:grid-cols-3 gap-x-8 gap-y-12">
           {[
             { step: '1', title: 'Sign In', desc: 'Create account or login with Google', color: 'text-neon-blue', bg: 'bg-neon-blue/10 border-neon-blue/30' },
@@ -231,8 +231,8 @@ export default function Home() {
               <div className={`w-16 h-16 rounded-2xl ${s.bg} border flex items-center justify-center mx-auto mb-4 group-hover:-translate-y-2 transition-transform duration-300 shadow-xl`}>
                 <span className={`text-2xl font-black ${s.color}`}>{s.step}</span>
               </div>
-              <h3 className="text-lg font-bold">{s.title}</h3>
-              <p className="text-brand-light text-xs mt-2 leading-relaxed">{s.desc}</p>
+              <h3 className="text-lg font-bold dark:text-white text-slate-900">{s.title}</h3>
+              <p className="dark:text-brand-light text-slate-600 text-xs mt-2 leading-relaxed">{s.desc}</p>
             </div>
           ))}
         </div>
@@ -245,15 +245,10 @@ export default function Home() {
           Arena <span className="text-brand-light">Rules</span>
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {[
-            "No hacking, cheating, or use of 3rd party apps.",
-            "Correct In-Game Name and UID is strictly required.",
-            "Room ID & Password unlock exactly 10 mins before match.",
-            "Admin decision is final and binding in all disputes."
-          ].map((rule, idx) => (
-            <div key={idx} className="bg-brand-gray/40 border border-white/5 p-4 rounded-xl flex items-start gap-4 hover:bg-brand-gray/60 transition-colors">
-              <div className="w-8 h-8 rounded bg-white/5 flex items-center justify-center font-bold text-brand-light flex-shrink-0">{idx + 1}</div>
-              <p className="text-sm text-brand-light pt-1">{rule}</p>
+          {["No hacking, cheating, or use of 3rd party apps.", "Correct In-Game Name and UID is strictly required.", "Room ID & Password unlock exactly 10 mins before match.", "Admin decision is final and binding in all disputes."].map((rule, idx) => (
+            <div key={idx} className="dark:bg-brand-gray/40 bg-slate-100 border dark:border-white/5 border-slate-200 p-4 rounded-xl flex items-start gap-4 hover:bg-slate-200 dark:hover:bg-brand-gray/60 transition-colors">
+              <div className="w-8 h-8 rounded dark:bg-white/5 bg-slate-200 flex items-center justify-center font-bold dark:text-brand-light text-slate-500 flex-shrink-0">{idx + 1}</div>
+              <p className="text-sm dark:text-brand-light text-slate-600 pt-1">{rule}</p>
             </div>
           ))}
         </div>
@@ -268,10 +263,10 @@ export default function Home() {
           <h2 className="text-4xl md:text-5xl font-black uppercase italic mb-6">
             India's <span className="text-neon-blue text-glow-blue">Premier</span> Mobile Esports Platform
           </h2>
-          <p className="text-brand-light text-lg leading-relaxed max-w-3xl mx-auto mb-6">
+          <p className="dark:text-brand-light text-slate-600 text-lg leading-relaxed max-w-3xl mx-auto mb-6">
             Battle Arena is India's most trusted Free Fire & BGMI tournament platform. We host daily online tournaments with real cash prizes, instant wallet payouts, and a fair competitive environment for every player — from beginners to pro squads.
           </p>
-          <p className="text-brand-light text-base leading-relaxed max-w-3xl mx-auto">
+          <p className="dark:text-brand-light text-slate-600 text-base leading-relaxed max-w-3xl mx-auto">
             Our platform is fully secured, admin-verified, and built to give every player the ultimate esports experience. Join thousands of players already competing and winning real money every day!
           </p>
           <div className="flex flex-wrap justify-center gap-6 mt-10">
